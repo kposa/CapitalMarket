@@ -1,0 +1,14 @@
+package Stock.Stock;
+
+import java.util.ArrayList;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Quarters{ 
+	private ArrayList<ArrayList<Object>> balancesheet;
+
+		  public ArrayList<ArrayList<Object>> getBalancesheet() { return this.balancesheet; }
+	
+		  public void setBalancesheet(ArrayList<ArrayList<Object>> balancesheet) { this.balancesheet = balancesheet; }
+}

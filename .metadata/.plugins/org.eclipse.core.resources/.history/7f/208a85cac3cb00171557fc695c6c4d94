@@ -1,0 +1,20 @@
+package Stock.Stock;
+
+import java.util.ArrayList;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Quarters{ 
+  private Double June_2016;
+
+  public Double getJune_2016() { return this.June_2016; }
+
+  public void setJune_2016(Double June_2016) { this.June_2016 = June_2016; }
+  
+  private Double Dec_2016;
+
+  public Double getDec_2016() { return this.Dec_2016; }
+
+  public void setDec_2016(Double Dec_2016) { this.Dec_2016 = Dec_2016; }
+}

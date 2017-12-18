@@ -1,0 +1,43 @@
+package Stock.Stock;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.*;
+import org.apache.http.impl.client.*;
+import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.DeserializationConfig.Feature;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.testng.annotations.Test;
+
+
+
+//@JsonIgnoreProperties(ignoreUnknown = true)
+public class ScreenerData {
+  @Test
+  public void getScreenerData() throws ClientProtocolException, IOException,JsonProcessingException {
+	  
+	  ObjectMapper mapper = new ObjectMapper();
+	  //mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	  CloseableHttpClient httpclient = HttpClients.createDefault();
+	  HttpGet httpGet = new HttpGet("https://www.screener.in/api/company/search/?q=AMARA+RAJA");
+	  CloseableHttpResponse responseCompanyName = httpclient.execute(httpGet);
+	  String json = EntityUtils.toString(responseCompanyName.getEntity(), "UTF-8");
+	  ResponseContent[] responseContent = mapper.readValue(json, ResponseContent[].class);
+  
+      String baseUrl = "http://screener.in/api"+responseContent[0].getUrl();
+      HttpGet httpGetScreener = new HttpGet(baseUrl);
+      CloseableHttpResponse responseScreener = httpclient.execute(httpGetScreener);
+	  String screenerString = EntityUtils.toString(responseScreener.getEntity(), "UTF-8").replaceAll("2005-03-31", "Mar 2005").replaceAll("2006-03-31", "Mar 2006").replaceAll("2007-03-31", "Mar 2007").replaceAll("2008-03-31", "Mar 2008").replaceAll("2009-03-31", "Mar 2009").replaceAll("2010-03-31", "Mar 2010").replaceAll("2011-03-31", "Mar 2011").replaceAll("2012-03-31", "Mar 2012").replaceAll("2013-03-31", "Mar 2013").replaceAll("2014-03-31", "Mar 2014").replaceAll("2015-03-31", "Mar 2015").replaceAll("2016-03-31", "Mar 2016").replaceAll("2017-03-31", "Mar 2017").replaceAll("2018-03-31", "Mar 2018").replaceAll("2014-12-31", "Dec 2014").replaceAll("2015-06-30", "June 2015").replaceAll("2015-09-30", "Sep 2015").replaceAll("2015-12-31", "Dec 2015").replaceAll("2016-06-30", "June 2016").replaceAll("2016-09-30", "Sep 2016").replaceAll("2016-12-31", "Dec 2016").replaceAll("2017-06-30", "June 2017").replaceAll("2017-09-30", "Sep 2017").replaceAll("2017-12-31", "Dec 2017");
+	  String scb = "{\"prime\":\"sa\",\"name\":\"AMARAJABAT\",\"bse_code\":\"anc\"}";
+	  ScreenerObject screenerObject = mapper.readValue(screenerString, ScreenerObject.class);
+	  //ScreenerObject screenerObject = gson.fromJson(screenerString, ScreenerObject.class);
+	  //ArrayList<ArrayList<Object>> obj = screenerObject.getNumberSet().getAnnual();
+	  //Object val = obj.get(0).get(0);
+  } 
+}
+
+

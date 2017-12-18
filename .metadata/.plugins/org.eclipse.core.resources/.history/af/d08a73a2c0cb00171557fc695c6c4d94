@@ -1,0 +1,29 @@
+package Stock.Stock;
+
+import java.io.Serializable;
+
+public class CompanyratingSet implements Serializable{ 
+	private String rating__rating;
+
+	  public String getRatingRating() { return this.rating__rating; }
+
+	  public void setRatingRating(String rating__rating) { this.rating__rating = rating__rating; }
+
+	  private String instrument;
+
+	  public String getInstrument() { return this.instrument; }
+
+	  public void setInstrument(String instrument) { this.instrument = instrument; }
+
+	  private String rating__source;
+
+	  public String getRatingSource() { return this.rating__source; }
+
+	  public void setRatingSource(String rating__source) { this.rating__source = rating__source; }
+
+	  private String link;
+
+	  public String getLink() { return this.link; }
+
+	  public void setLink(String link) { this.link = link; }
+}
