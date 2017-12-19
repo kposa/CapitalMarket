@@ -1,7 +1,0 @@
-package Stock.Stock;
-
-import java.io.Serializable;
-
-public class Quarters implements Serializable{ 
-
-}

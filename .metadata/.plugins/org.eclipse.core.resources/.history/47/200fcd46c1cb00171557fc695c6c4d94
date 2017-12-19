@@ -1,9 +1,0 @@
-package Stock.Stock;
-
-import java.io.Serializable;
-
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Quarters implements Serializable{ 
-
-}
