@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="4906" started-at="2017-12-17T18:13:03Z" finished-at="2017-12-17T18:13:07Z">
+  <suite name="Default suite" duration-ms="120862" started-at="2017-12-18T18:26:42Z" finished-at="2017-12-18T18:28:43Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="4906" started-at="2017-12-17T18:13:03Z" finished-at="2017-12-17T18:13:07Z">
+    <test name="Default test" duration-ms="120862" started-at="2017-12-18T18:26:42Z" finished-at="2017-12-18T18:28:43Z">
       <class name="Stock.Stock.GetHistoricalData">
-        <test-method status="PASS" signature="f()[pri:0, instance:Stock.Stock.GetHistoricalData@d2cc05a]" name="f" duration-ms="4888" started-at="2017-12-17T23:43:03Z" finished-at="2017-12-17T23:43:07Z">
+        <test-method status="PASS" signature="f()[pri:0, instance:Stock.Stock.GetHistoricalData@d2cc05a]" name="f" duration-ms="120840" started-at="2017-12-18T23:56:42Z" finished-at="2017-12-18T23:58:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- f -->
