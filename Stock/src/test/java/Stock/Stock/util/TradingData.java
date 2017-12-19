@@ -1,4 +1,4 @@
-package Stock.Stock;
+package Stock.Stock.util;
 
 public class TradingData {
 
@@ -10,7 +10,7 @@ public class TradingData {
 	private String volume;
 	private double adjClose;
 	
-	TradingData(String Date,double Open,double High,double Low,double Close,String Volume,double AdjClose)
+	public TradingData(String Date,double Open,double High,double Low,double Close,String Volume,double AdjClose)
 	{
 		setDate(Date);
 		setOpen(Open);

@@ -2,6 +2,7 @@ package Stock.Stock.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -10,9 +11,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import Stock.Stock.Item;
 import Stock.Stock.RootObject;
+import Stock.Stock.webDriverSetup.webDriverSetup;
 
 public class util {
 	public static String getSymbol(String companyName) throws ClientProtocolException, IOException
@@ -39,5 +43,41 @@ public class util {
 			}
 		}
 		return symbol;
+	}
+	
+	public static List<TradingData> getHistoricalData(WebElement htmltable) throws InterruptedException
+	{
+		List<WebElement> rows=htmltable.findElements(By.tagName("tr"));
+		webDriverSetup.getFocus(rows.get(rows.size()-2));
+
+		List<WebElement> rowsNew=htmltable.findElements(By.tagName("tr"));
+		List<TradingData> historicalData = new ArrayList<TradingData>();
+		for(int tableRow=1;;tableRow++)
+		{
+			try{
+				if(rowsNew.get(tableRow).findElements(By.tagName("td")).size()==7){
+
+					String date=rowsNew.get(tableRow).findElements(By.tagName("td")).get(0).getText();
+					double open=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(1).getText().replaceAll("[,]",""));
+					double high=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(2).getText().replaceAll("[,]",""));
+					double low=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(3).getText().replaceAll("[,]",""));
+					double close=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(4).getText().replaceAll("[,]",""));
+					String volume=rowsNew.get(tableRow).findElements(By.tagName("td")).get(6).getText();
+					double adjClose=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(5).getText().replaceAll("[,]",""));
+					if(open!=0){
+						historicalData.add(new TradingData(date,open,high,low,close,volume,adjClose));
+					}
+					if(historicalData.size()>=167){
+						break;
+					}
+				}
+
+			}
+			catch(Exception e){
+				continue;
+			}
+
+		}
+		return historicalData;
 	}
 }
