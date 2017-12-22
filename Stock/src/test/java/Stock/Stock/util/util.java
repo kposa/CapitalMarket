@@ -44,7 +44,7 @@ public class util {
 		}
 		return symbol;
 	}
-	
+
 	public static List<TradingData> getHistoricalData(WebElement htmltable) throws InterruptedException
 	{
 		List<WebElement> rows=htmltable.findElements(By.tagName("tr"));
@@ -52,31 +52,34 @@ public class util {
 
 		List<WebElement> rowsNew=htmltable.findElements(By.tagName("tr"));
 		List<TradingData> historicalData = new ArrayList<TradingData>();
-		for(int tableRow=1;;tableRow++)
+		if(rowsNew.size()>=167)
 		{
-			try{
-				if(rowsNew.get(tableRow).findElements(By.tagName("td")).size()==7){
+			for(int tableRow=1;;tableRow++)
+			{
+				try{
+					if(rowsNew.get(tableRow).findElements(By.tagName("td")).size()==7){
 
-					String date=rowsNew.get(tableRow).findElements(By.tagName("td")).get(0).getText();
-					double open=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(1).getText().replaceAll("[,]",""));
-					double high=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(2).getText().replaceAll("[,]",""));
-					double low=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(3).getText().replaceAll("[,]",""));
-					double close=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(4).getText().replaceAll("[,]",""));
-					String volume=rowsNew.get(tableRow).findElements(By.tagName("td")).get(6).getText();
-					double adjClose=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(5).getText().replaceAll("[,]",""));
-					if(open!=0){
-						historicalData.add(new TradingData(date,open,high,low,close,volume,adjClose));
+						String date=rowsNew.get(tableRow).findElements(By.tagName("td")).get(0).getText();
+						double open=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(1).getText().replaceAll("[,]",""));
+						double high=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(2).getText().replaceAll("[,]",""));
+						double low=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(3).getText().replaceAll("[,]",""));
+						double close=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(4).getText().replaceAll("[,]",""));
+						String volume=rowsNew.get(tableRow).findElements(By.tagName("td")).get(6).getText();
+						double adjClose=Double.parseDouble(rowsNew.get(tableRow).findElements(By.tagName("td")).get(5).getText().replaceAll("[,]",""));
+						if(open!=0){
+							historicalData.add(new TradingData(date,open,high,low,close,volume,adjClose));
+						}
+						if(historicalData.size()>=167){
+							break;
+						}
 					}
-					if(historicalData.size()>=167){
-						break;
-					}
+
+				}
+				catch(Exception e){
+					continue;
 				}
 
 			}
-			catch(Exception e){
-				continue;
-			}
-
 		}
 		return historicalData;
 	}
