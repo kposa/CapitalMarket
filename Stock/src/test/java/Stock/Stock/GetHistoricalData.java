@@ -28,7 +28,7 @@ public class GetHistoricalData {
 
 				List<TradingData> historicalData = webDriverSetup.navigateToHistoricalData(workingDir,securityName);
 				webDriverSetup.closeDriver();
-				if(historicalData.size()!=0)
+				if(historicalData!=null)
 				{
 					excelHelper.copyFile(templateFilePath, filePath);
 					technicalWorkBook = new HSSFWorkbook(new FileInputStream(filePath));

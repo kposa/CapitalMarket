@@ -25,7 +25,14 @@ public class util {
 		String[] CompanyNameArray = companyName.split(" ");
 		String CompanyName = CompanyNameArray[0];
 		for (int i = 1; i < CompanyNameArray.length - 1; i++) {
-			CompanyName = CompanyName + "%20" + CompanyNameArray[i];
+			if(CompanyNameArray[i].hashCode() =="&".hashCode())
+			{
+				CompanyName = CompanyName + "%20%26";	
+			}
+			else
+			{
+				CompanyName = CompanyName + "%20" + CompanyNameArray[i];
+			}
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -36,10 +43,45 @@ public class util {
 		ArrayList<Item> items = rootObject.getData().getItems();
 		for(Item item:items)
 		{
-			if(item.getSymbol().indexOf(".BO")!=-1)
+			if(item.getSymbol().startsWith(String.valueOf(companyName.charAt(0))))
 			{
-				symbol = item.getSymbol();
-				break;
+				if(item.getSymbol().indexOf(".BO")!=-1);
+				{
+					symbol = item.getSymbol();
+					break;
+				}
+			}
+		}
+		if(symbol=="")
+		{
+			CompanyName = CompanyNameArray[0];
+			for (int i = 1; i < CompanyNameArray.length - 2; i++) {
+				if(CompanyNameArray[i].hashCode() =="&".hashCode())
+				{
+					CompanyName = CompanyName + "%20%26";	
+				}
+				else
+				{
+					CompanyName = CompanyName + "%20" + CompanyNameArray[i];
+				}
+			}
+			mapper = new ObjectMapper();
+			httpclient = HttpClients.createDefault();
+			httpGet = new HttpGet("https://in.finance.yahoo.com/_finance_doubledown/api/resource/searchassist;searchTerm="+CompanyName+"?bkt=finance-IN-en-IN-def&device=desktop&feature=canvassOffnet%2CnewContentAttribution%2CrelatedVideoFeature%2CvideoNativePlaylist&intl=in&lang=en-IN&partner=none&prid=70uf22ld1j13t&region=IN&site=finance&tz=Asia%2FKolkata&ver=0.102.883&returnMeta=true");
+			responseCompanyName = httpclient.execute(httpGet);
+			json = EntityUtils.toString(responseCompanyName.getEntity(), "UTF-8");
+			rootObject = mapper.readValue(json, RootObject.class);
+			items = rootObject.getData().getItems();
+			for(Item item:items)
+			{
+				if(item.getSymbol().startsWith(String.valueOf(companyName.charAt(0))))
+				{
+					if(item.getSymbol().indexOf(".BO")!=-1);
+					{
+						symbol = item.getSymbol();
+						break;
+					}
+				}
 			}
 		}
 		return symbol;

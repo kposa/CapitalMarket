@@ -26,36 +26,40 @@ public class webDriverSetup {
 		driver.manage().window().maximize();
 		return driver;
 	}
-	
+
 	public static void navigate(String url)
 	{
 		driver.get(url);
 	}
-	
+
 	public static void scrollDown()
 	{
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 	}
-	
+
 	public static void getFocus(WebElement element) throws InterruptedException
 	{
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("arguments[0].scrollIntoView(true);",element);
 		Thread.sleep(5000);
 	}
-	
+
 	public static List<TradingData> navigateToHistoricalData(String workingDir,String securityName) throws ClientProtocolException, IOException, InterruptedException
 	{
 		String symbol = util.getSymbol(securityName);
-		driver = webDriverSetup.LaunchBrowser(workingDir+"\\chromedriver_2.33.exe");
-		webDriverSetup.navigate("https://in.finance.yahoo.com/quote/"+symbol+"/history?p="+symbol);
-		webDriverSetup.scrollDown();
-		WebElement htmltable=driver.findElement(By.xpath("//table[@data-test='historical-prices']"));
-		List<TradingData> historicalData = util.getHistoricalData(htmltable);
+		List<TradingData> historicalData = null;
+		if(symbol!="")
+		{
+			driver = webDriverSetup.LaunchBrowser(workingDir+"\\chromedriver_2.33.exe");
+			webDriverSetup.navigate("https://in.finance.yahoo.com/quote/"+symbol+"/history?p="+symbol);
+			webDriverSetup.scrollDown();
+			WebElement htmltable=driver.findElement(By.xpath("//table[@data-test='historical-prices']"));
+			historicalData = util.getHistoricalData(htmltable);
+		}
 		return historicalData;
 	}
-	
+
 	public static void closeDriver()
 	{
 		driver.quit();
