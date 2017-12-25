@@ -1,4 +1,4 @@
-package Stock.util;
+package stock.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import Stock.BusinessObjects.*;
-import Stock.webDriverSetup.webDriverSetup;
+import stock.BusinessObjects.*;
+import stock.webDriverSetup.WebDriverSetup;
 
-public class util {
+public class Util {
 	public static String getSymbol(String companyName) throws ClientProtocolException, IOException
 	{
 		String symbol = "";
@@ -89,7 +89,7 @@ public class util {
 	public static List<TradingData> getHistoricalData(WebElement htmltable) throws InterruptedException
 	{
 		List<WebElement> rows=htmltable.findElements(By.tagName("tr"));
-		webDriverSetup.getFocus(rows.get(rows.size()-2));
+		WebDriverSetup.getFocus(rows.get(rows.size()-2));
 
 		List<WebElement> rowsNew=htmltable.findElements(By.tagName("tr"));
 		List<TradingData> historicalData = new ArrayList<TradingData>();

@@ -1,13 +1,13 @@
-package Stock;
+package stock;
 
 import java.io.*;
 import java.util.List;
 import org.apache.poi.hssf.usermodel.*;
 import org.testng.annotations.Test;
-import Stock.ExcelHelper.excelHelper;
-import Stock.Technical.TechnicalData;
-import Stock.util.TradingData;
-import Stock.webDriverSetup.webDriverSetup;
+import stock.ExcelHelper.ExcelHelper;
+import stock.Technical.TechnicalData;
+import stock.util.TradingData;
+import stock.webDriverSetup.WebDriverSetup;
 
 public class GetHistoricalData {
 	@Test
@@ -17,7 +17,7 @@ public class GetHistoricalData {
 		HSSFWorkbook technicalWorkBook = null;
 		String securityName = null;
 		String templateFilePath = workingDir+"\\templates\\RSI-ATR-MACD-EMA-HV.xls";
-		HSSFSheet bestCompanies = excelHelper.getSheet("Companies_List.xls", "Best Stocks");
+		HSSFSheet bestCompanies = ExcelHelper.getSheet("Companies_List.xls", "Best Stocks");
 		for (int index = 1;index<=bestCompanies.getLastRowNum(); index++) 
 		{
 			try
@@ -26,14 +26,14 @@ public class GetHistoricalData {
 				securityName = row.getCell(2).toString();
 				filePath = workingDir+"\\Best\\"+securityName+".xls";
 
-				List<TradingData> historicalData = webDriverSetup.navigateToHistoricalData(workingDir,securityName);
-				webDriverSetup.closeDriver();
+				List<TradingData> historicalData = WebDriverSetup.navigateToHistoricalData(workingDir,securityName);
+				WebDriverSetup.closeDriver();
 				if(historicalData!=null)
 				{
-					excelHelper.copyFile(templateFilePath, filePath);
+					ExcelHelper.copyFile(templateFilePath, filePath);
 					technicalWorkBook = new HSSFWorkbook(new FileInputStream(filePath));
 					HSSFSheet DataSheet = technicalWorkBook.getSheet("Data");
-					excelHelper.updateHistoricalData(technicalWorkBook,DataSheet,historicalData,filePath);
+					ExcelHelper.updateHistoricalData(technicalWorkBook,DataSheet,historicalData,filePath);
 
 					TechnicalData technicalData = new TechnicalData();
 					technicalData.calculateTechnicalData(historicalData);
@@ -65,7 +65,7 @@ public class GetHistoricalData {
 			catch(Exception e)
 			{
 				System.out.println("Exception2: "+ e);
-				webDriverSetup.closeDriver();
+				WebDriverSetup.closeDriver();
 				continue;
 			}
 		}

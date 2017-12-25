@@ -1,4 +1,4 @@
-package Stock.BusinessObjects;
+package stock.BusinessObjects;
 
 public class SymbolSearchResults {
 	private SymbolResultsData data;

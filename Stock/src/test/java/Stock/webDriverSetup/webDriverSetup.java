@@ -1,4 +1,4 @@
-package Stock.webDriverSetup;
+package stock.webDriverSetup;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,10 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Stock.util.TradingData;
-import Stock.util.util;
+import stock.util.TradingData;
+import stock.util.Util;
 
-public class webDriverSetup {
+public class WebDriverSetup {
 	private static WebDriver driver;
 	public static WebDriver webDriver()
 	{
@@ -47,15 +47,15 @@ public class webDriverSetup {
 
 	public static List<TradingData> navigateToHistoricalData(String workingDir,String securityName) throws ClientProtocolException, IOException, InterruptedException
 	{
-		String symbol = util.getSymbol(securityName);
+		String symbol = Util.getSymbol(securityName);
 		List<TradingData> historicalData = null;
 		if(symbol!="")
 		{
-			driver = webDriverSetup.LaunchBrowser(workingDir+"\\chromedriver_2.33.exe");
-			webDriverSetup.navigate("https://in.finance.yahoo.com/quote/"+symbol+"/history?p="+symbol);
-			webDriverSetup.scrollDown();
+			driver = WebDriverSetup.LaunchBrowser(workingDir+"\\chromedriver_2.33.exe");
+			WebDriverSetup.navigate("https://in.finance.yahoo.com/quote/"+symbol+"/history?p="+symbol);
+			WebDriverSetup.scrollDown();
 			WebElement htmltable=driver.findElement(By.xpath("//table[@data-test='historical-prices']"));
-			historicalData = util.getHistoricalData(htmltable);
+			historicalData = Util.getHistoricalData(htmltable);
 		}
 		return historicalData;
 	}

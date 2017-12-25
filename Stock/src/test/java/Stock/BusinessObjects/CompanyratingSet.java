@@ -1,4 +1,4 @@
-package Stock.BusinessObjects;
+package stock.BusinessObjects;
 
 public class CompanyratingSet{ 
 	private String rating__rating;

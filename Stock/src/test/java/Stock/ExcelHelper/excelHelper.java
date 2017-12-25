@@ -1,4 +1,4 @@
-package Stock.ExcelHelper;
+package stock.ExcelHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,9 +13,9 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import Stock.util.TradingData;
+import stock.util.TradingData;
 
-public class excelHelper {
+public class ExcelHelper {
 	public static HSSFSheet getSheet(String ExcelFile,String SheetName) throws IOException
 	{
 		InputStream excelFileToRead = new FileInputStream(ExcelFile);

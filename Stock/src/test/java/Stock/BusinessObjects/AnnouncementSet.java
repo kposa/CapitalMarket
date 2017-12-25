@@ -1,4 +1,4 @@
-package Stock.BusinessObjects;
+package stock.BusinessObjects;
 
 public class AnnouncementSet {
 	private String ann_date;
