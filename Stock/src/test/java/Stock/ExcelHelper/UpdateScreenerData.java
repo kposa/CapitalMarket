@@ -1,4 +1,4 @@
-package Stock.Stock;
+package Stock.ExcelHelper;
 
 import java.io.*;
 
@@ -11,8 +11,10 @@ import org.apache.poi.hssf.usermodel.*;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.testng.annotations.Test;
+import Stock.BusinessObjects.ScreenerCompanySearchResponse;
+import Stock.BusinessObjects.ScreenerObject;
 
-public class ScreenerData {
+public class UpdateScreenerData {
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Test
 	public void getScreenerData() throws ClientProtocolException, IOException, JsonProcessingException {
@@ -61,7 +63,7 @@ public class ScreenerData {
 				HttpGet httpGet = new HttpGet("https://www.screener.in/api/company/search/?q=" + CompanyName);
 				CloseableHttpResponse responseCompanyName = httpclient.execute(httpGet);
 				String json = EntityUtils.toString(responseCompanyName.getEntity(), "UTF-8");
-				ResponseContent[] responseContent = mapper.readValue(json, ResponseContent[].class);
+				ScreenerCompanySearchResponse[] responseContent = mapper.readValue(json, ScreenerCompanySearchResponse[].class);
 				String baseUrl = "http://screener.in/api" + responseContent[0].getUrl();
 				HttpGet httpGetScreener = new HttpGet(baseUrl);
 				CloseableHttpResponse responseScreener = httpclient.execute(httpGetScreener);

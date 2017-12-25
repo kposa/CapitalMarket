@@ -1,8 +1,8 @@
-package Stock.Stock;
+package Stock.BusinessObjects;
 
-public class ResponseContent{
+public class ScreenerCompanySearchResponse {
 
-    private String url;
+	private String url;
     private String id;
     private String name;
 

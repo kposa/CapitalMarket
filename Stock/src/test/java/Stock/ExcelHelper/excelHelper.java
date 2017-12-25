@@ -1,4 +1,4 @@
-package Stock.Stock.ExcelHelper;
+package Stock.ExcelHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import Stock.Stock.util.TradingData;
+import Stock.util.TradingData;
 
 public class excelHelper {
 	public static HSSFSheet getSheet(String ExcelFile,String SheetName) throws IOException

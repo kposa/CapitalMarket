@@ -1,8 +1,8 @@
-package Stock.Stock;
+package Stock.BusinessObjects;
 
 import java.util.ArrayList;
 
-public class Data {
+public class SymbolResultsData {
 	private String suggestionTitleAccessor;
 
 	  public String getSuggestionTitleAccessor() { return this.suggestionTitleAccessor; }
@@ -21,9 +21,9 @@ public class Data {
 
 	  public void setHiConf(boolean hiConf) { this.hiConf = hiConf; }
 
-	  private ArrayList<Item> items;
+	  private ArrayList<SymbolResultItem> items;
 
-	  public ArrayList<Item> getItems() { return this.items; }
+	  public ArrayList<SymbolResultItem> getItems() { return this.items; }
 
-	  public void setItems(ArrayList<Item> items) { this.items = items; }
+	  public void setItems(ArrayList<SymbolResultItem> items) { this.items = items; }
 }

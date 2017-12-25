@@ -1,6 +1,6 @@
-package Stock.Stock;
+package Stock.BusinessObjects;
 
-public class Item {
+public class SymbolResultItem {
 	private String symbol;
 
 	  public String getSymbol() { return this.symbol; }

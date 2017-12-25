@@ -1,4 +1,4 @@
-package Stock.Stock;
+package Stock.BusinessObjects;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Stock.Stock.util;
+package Stock.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,9 +14,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import Stock.Stock.Item;
-import Stock.Stock.RootObject;
-import Stock.Stock.webDriverSetup.webDriverSetup;
+import Stock.BusinessObjects.*;
+import Stock.webDriverSetup.webDriverSetup;
 
 public class util {
 	public static String getSymbol(String companyName) throws ClientProtocolException, IOException
@@ -39,9 +38,9 @@ public class util {
 		HttpGet httpGet = new HttpGet("https://in.finance.yahoo.com/_finance_doubledown/api/resource/searchassist;searchTerm="+CompanyName+"?bkt=finance-IN-en-IN-def&device=desktop&feature=canvassOffnet%2CnewContentAttribution%2CrelatedVideoFeature%2CvideoNativePlaylist&intl=in&lang=en-IN&partner=none&prid=70uf22ld1j13t&region=IN&site=finance&tz=Asia%2FKolkata&ver=0.102.883&returnMeta=true");
 		CloseableHttpResponse responseCompanyName = httpclient.execute(httpGet);
 		String json = EntityUtils.toString(responseCompanyName.getEntity(), "UTF-8");
-		RootObject rootObject = mapper.readValue(json, RootObject.class);
-		ArrayList<Item> items = rootObject.getData().getItems();
-		for(Item item:items)
+		SymbolSearchResults rootObject = mapper.readValue(json, SymbolSearchResults.class);
+		ArrayList<SymbolResultItem> items = rootObject.getData().getItems();
+		for(SymbolResultItem item:items)
 		{
 			if(item.getSymbol().startsWith(String.valueOf(companyName.charAt(0))))
 			{
@@ -70,9 +69,9 @@ public class util {
 			httpGet = new HttpGet("https://in.finance.yahoo.com/_finance_doubledown/api/resource/searchassist;searchTerm="+CompanyName+"?bkt=finance-IN-en-IN-def&device=desktop&feature=canvassOffnet%2CnewContentAttribution%2CrelatedVideoFeature%2CvideoNativePlaylist&intl=in&lang=en-IN&partner=none&prid=70uf22ld1j13t&region=IN&site=finance&tz=Asia%2FKolkata&ver=0.102.883&returnMeta=true");
 			responseCompanyName = httpclient.execute(httpGet);
 			json = EntityUtils.toString(responseCompanyName.getEntity(), "UTF-8");
-			rootObject = mapper.readValue(json, RootObject.class);
+			rootObject = mapper.readValue(json, SymbolSearchResults.class);
 			items = rootObject.getData().getItems();
-			for(Item item:items)
+			for(SymbolResultItem item:items)
 			{
 				if(item.getSymbol().startsWith(String.valueOf(companyName.charAt(0))))
 				{

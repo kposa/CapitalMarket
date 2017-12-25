@@ -1,4 +1,4 @@
-package Stock.Stock.util;
+package Stock.util;
 
 public class TradingData {
 

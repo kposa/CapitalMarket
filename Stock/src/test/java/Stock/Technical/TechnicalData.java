@@ -1,9 +1,9 @@
-package Stock.Stock.Technical;
+package Stock.Technical;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Stock.Stock.util.TradingData;
+import Stock.util.TradingData;
 
 public class TechnicalData {
 

@@ -1,4 +1,4 @@
-package Stock.Stock.webDriverSetup;
+package Stock.webDriverSetup;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Stock.Stock.util.TradingData;
-import Stock.Stock.util.util;
+import Stock.util.TradingData;
+import Stock.util.util;
 
 public class webDriverSetup {
 	private static WebDriver driver;

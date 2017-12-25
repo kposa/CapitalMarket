@@ -1,4 +1,4 @@
-package Stock.Stock;
+package Stock;
 
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class ListOfCompanies {
+public class GetListOfCompanies {
   @SuppressWarnings("deprecation")
 @Test
   public void getListOfCompanies() {

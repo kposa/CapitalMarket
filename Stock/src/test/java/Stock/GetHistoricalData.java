@@ -1,13 +1,13 @@
-package Stock.Stock;
+package Stock;
 
 import java.io.*;
 import java.util.List;
 import org.apache.poi.hssf.usermodel.*;
 import org.testng.annotations.Test;
-import Stock.Stock.ExcelHelper.excelHelper;
-import Stock.Stock.Technical.TechnicalData;
-import Stock.Stock.util.TradingData;
-import Stock.Stock.webDriverSetup.webDriverSetup;
+import Stock.ExcelHelper.excelHelper;
+import Stock.Technical.TechnicalData;
+import Stock.util.TradingData;
+import Stock.webDriverSetup.webDriverSetup;
 
 public class GetHistoricalData {
 	@Test

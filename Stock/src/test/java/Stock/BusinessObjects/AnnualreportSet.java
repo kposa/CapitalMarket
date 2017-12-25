@@ -1,4 +1,4 @@
-package Stock.Stock;
+package Stock.BusinessObjects;
 
 public class AnnualreportSet { 
 	private String source;
