@@ -1,4 +1,4 @@
-package stock.BusinessObjects;
+package stock.businessObjects;
 
 public class Meta {
 

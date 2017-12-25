@@ -1,4 +1,4 @@
-package stock.ExcelHelper;
+package stock.excelHelper;
 
 import java.io.File;
 import java.io.FileInputStream;

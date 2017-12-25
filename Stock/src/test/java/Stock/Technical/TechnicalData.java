@@ -1,4 +1,4 @@
-package stock.Technical;
+package stock.technical;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package stock.BusinessObjects;
+package stock.businessObjects;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

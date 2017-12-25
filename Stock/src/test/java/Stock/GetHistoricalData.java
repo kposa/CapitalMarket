@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.List;
 import org.apache.poi.hssf.usermodel.*;
 import org.testng.annotations.Test;
-import stock.ExcelHelper.ExcelHelper;
-import stock.Technical.TechnicalData;
+
+import stock.excelHelper.ExcelHelper;
+import stock.technical.TechnicalData;
 import stock.util.TradingData;
 import stock.webDriverSetup.WebDriverSetup;
 

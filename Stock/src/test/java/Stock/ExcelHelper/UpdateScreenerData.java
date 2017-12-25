@@ -1,4 +1,4 @@
-package stock.ExcelHelper;
+package stock.excelHelper;
 
 import java.io.*;
 
@@ -11,8 +11,9 @@ import org.apache.poi.hssf.usermodel.*;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.testng.annotations.Test;
-import stock.BusinessObjects.ScreenerCompanySearchResponse;
-import stock.BusinessObjects.ScreenerObject;
+
+import stock.businessObjects.ScreenerCompanySearchResponse;
+import stock.businessObjects.ScreenerObject;
 
 public class UpdateScreenerData {
 	@SuppressWarnings({ "unchecked", "deprecation" })

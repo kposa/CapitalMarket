@@ -14,7 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import stock.BusinessObjects.*;
+import stock.businessObjects.*;
 import stock.webDriverSetup.WebDriverSetup;
 
 public class Util {
