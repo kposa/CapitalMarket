@@ -18,7 +18,8 @@ public class GetListOfCompanies {
   @SuppressWarnings("deprecation")
 @Test
   public void getListOfCompanies() {
-	  System.setProperty("webdriver.chrome.driver","F:\\DemoFrameworks\\Stock\\chromedriver_2.33.exe");
+	  String workingDir = System.getProperty("user.dir");
+	  System.setProperty("webdriver.chrome.driver",workingDir+"\\chromedriver_2.33.exe");
 	  WebDriver driver = new ChromeDriver();
 	  driver.manage().window().maximize();
       String baseUrl = "http://www.bseindia.com/corporates/List_Scrips.aspx?expandable=1";
