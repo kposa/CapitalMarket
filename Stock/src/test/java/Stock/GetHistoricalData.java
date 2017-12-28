@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.List;
 import org.apache.poi.hssf.usermodel.*;
 import org.testng.annotations.Test;
-
 import stock.excelHelper.ExcelHelper;
 import stock.technical.TechnicalData;
 import stock.util.TradingData;
 import stock.webDriverSetup.WebDriverSetup;
 
 public class GetHistoricalData {
+	
 	@Test
 	public void getHistoricalData() throws Exception {
 		String workingDir = System.getProperty("user.dir");
@@ -48,19 +48,21 @@ public class GetHistoricalData {
 					HSSFCell histogramCell = excelRow.getCell(10);
 					HSSFCell closeCell = excelRow.getCell(11);
 					HSSFCell lowerBandCell = excelRow.getCell(12);
-					HSSFCell bandwidthCell = excelRow.getCell(10);
+					HSSFCell bandwidthCell = excelRow.getCell(13);
 					double rsi = technicalData.getRSI().get(166);
 					double macd = technicalData.getMACD().get(166);
 					double signal = technicalData.getSignal().get(166);
 					double histogram = technicalData.getHistogram().get(166);
-					double close = historicalData.get(166).getClose();
-					//double lowerBand = historicalData.get(166).getClose();
-					//double bandwidth = historicalData.get(166).getClose();
+					double close = historicalData.get(0).getClose();
+					double lowerBand = technicalData.getLowerBand().get(166);
+					double bandwidth = technicalData.getBandwidth().get(166);
 					rsiCell.setCellValue(rsi);
 					macdCell.setCellValue(macd);
 					signalCell.setCellValue(signal);
 					histogramCell.setCellValue(histogram);
 					closeCell.setCellValue(close);
+					lowerBandCell.setCellValue(lowerBand);
+					bandwidthCell.setCellValue(bandwidth);
 					FileOutputStream out = new FileOutputStream(new File("Companies_List.xls"));
 					templateWorkBook.write(out);
 					out.close();

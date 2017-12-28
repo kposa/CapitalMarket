@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stock.util.TradingData;
+import stock.util.Util;
 
 public class TechnicalData {
 
@@ -74,9 +75,29 @@ public class TechnicalData {
 			this.Histogram.add(0.0);
 		}
 
-		for(int iteration=166;iteration>=147;iteration--)
+		for(int iteration=166;iteration>=148;iteration--)
 		{
 			this.MiddleBand.add(0.0);
+		}
+		
+		for(int iteration=166;iteration>=148;iteration--)
+		{
+			this.StandardDeviation.add(0.0);
+		}
+		
+		for(int iteration=166;iteration>=148;iteration--)
+		{
+			this.UpperBand.add(0.0);
+		}
+		
+		for(int iteration=166;iteration>=148;iteration--)
+		{
+			this.LowerBand.add(0.0);
+		}
+		
+		for(int iteration=166;iteration>=148;iteration--)
+		{
+			this.Bandwidth.add(0.0);
 		}
 
 		for(int i=166;i>=1;i--)
@@ -207,14 +228,39 @@ public class TechnicalData {
 		{
 			this.Histogram.add(this.MACD.get(i)-this.Signal.get(i));
 		}
-		for(int i=147;i>=1;i--)
+		for(int i=166;i>=19;i--)
 		{
 			double middleBandValue = 0.0;
-			for(int j=i+19;j>=i;j--)
+			for(int j=i;j>=i-19;j--)
 			{
 				middleBandValue+=historicalData.get(j).getClose();
 			}
-			this.MiddleBand.add(middleBandValue);
+			this.MiddleBand.add(middleBandValue/20);
+		}
+		
+		for(int i=147;i>=0;i--)
+		{
+			List<Double> standardDeviationList = new ArrayList<Double>();
+			for(int j=i+19;j>=i;j--)
+			{
+				standardDeviationList.add(historicalData.get(j).getClose());
+			}
+			this.StandardDeviation.add(Util.populationStandardDeviation(standardDeviationList));
+		}
+		
+		for(int i=19;i<=StandardDeviation.size()-1;i++)
+		{
+			this.UpperBand.add(this.MiddleBand.get(i)+(this.StandardDeviation.get(i)*2));
+		}
+		
+		for(int i=19;i<=StandardDeviation.size()-1;i++)
+		{
+			this.LowerBand.add(this.MiddleBand.get(i)-(this.StandardDeviation.get(i)*2));
+		}
+		
+		for(int i=19;i<=StandardDeviation.size()-1;i++)
+		{
+			this.Bandwidth.add(this.UpperBand.get(i)-this.LowerBand.get(i));
 		}
 	}
 
@@ -236,6 +282,21 @@ public class TechnicalData {
 	public List<Double> getHistogram()
 	{
 		return this.Histogram;
+	}
+	
+	public List<Double> getMiddleBand()
+	{
+		return this.MiddleBand;
+	}
+	
+	public List<Double> getLowerBand()
+	{
+		return this.LowerBand;
+	}
+	
+	public List<Double> getBandwidth()
+	{
+		return this.Bandwidth;
 	}
 
 }
